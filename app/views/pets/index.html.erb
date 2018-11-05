@@ -1,0 +1,6 @@
+<h1>Pets#index</h1>
+<%  @pets.each do |pet| %>
+<%= pet.name %>
+<% end %>
+<%= link_to 'add a pet', new_pet_path %>
+<p>Find me in app/views/pets/index.html.erb</p>
