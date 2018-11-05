@@ -1,3 +1,21 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-<%= @user.name %>
+<h1>Welcome, <%= @user.name %> <i><%= @user.last_name %></i></h1>
+
+<h2> Your Pets</h2>
+<% @user.pets.each do |p| %>
+<b><%= p.name %></b>
+<%= link_to "Delete", user_path(@user), method: :delete , class:'btn btn-primary'%>
+<% end %>
+
+<h2>Your Personal info</h2>
+<h3> Phone Number </h3>
+<%= @user.phone_number %>
+<%= link_to "Delete", user_path(@user), method: :delete , class:'btn btn-primary'%>
+<h3>User image</h3>
+<%= @user.photo %>
+<%= link_to "Delete", user_path(@user), method: :delete , class:'btn btn-primary'%>
+
+
+
+
+
+
