@@ -1,0 +1,29 @@
+.petcard{
+  margin: 30px 20px;
+  height: 300px;
+  width: 600px;
+  background-color: black;
+  position: relative;
+  background-size: cover;
+}
+
+.petcard-name{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 20px;
+  font-style: bold;
+}
+
+.petcard-owner{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.petcard-price{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 30px;
+}
