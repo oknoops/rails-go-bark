@@ -12,7 +12,7 @@
     <% @pets.each do |pet| %>
     <div class = 'col-sm-6'>
       <div class = 'petcard'>
-        <div class = petcard-image style ="background-image: url(<%= cl_image_path @pet.photo%>)"></div>
+        <div class = petcard-image style ="background-image: url(<%= cl_image_path pet.photo%>)"></div>
         <div class = 'petcard-description'>
           <div class = 'petcard-name'>
             <%= pet.name %>
