@@ -1,6 +1,6 @@
 <h1>Pets</h1>
 <%  @pets.each do |pet| %>
-<%= pet.name %>
+<%=link_to pet.name, pet_path(pet) %>
 <% end %>
 <%= link_to 'add a pet', new_pet_path %>
 <% if user_signed_in? %>
