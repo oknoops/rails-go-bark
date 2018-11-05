@@ -9,9 +9,11 @@
 
 <div class = 'container'>
   <div class = 'row'>
+    <% @pets.each do |pet| %>
     <div class = 'col-sm-6'>
-      <div class = 'petcard' style = 'background-image: url("https://images.pexels.com/photos/434090/pexels-photo-434090.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");'>
-        <% @pets.each do |pet| %>
+      <div class = 'petcard'>
+        <div class = petcard-image style ="background-image: url(<%= cl_image_path @pet.photo%>)"></div>
+        <div class = 'petcard-description'>
           <div class = 'petcard-name'>
             <%= pet.name %>
           </div>
@@ -21,9 +23,10 @@
           <div class = 'petcard-price'>
             <%= pet.price %> €/jour
           </div>
-          <% end %>
+        </div>
       </div>
     </div>
+    <% end %>
   </div>
 </div>
 
