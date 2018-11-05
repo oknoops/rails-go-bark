@@ -15,8 +15,8 @@ Rails.application.routes.draw do
   # get 'users/update'
   # get 'users/destroy'
 
-  devise_for :users
   root to: 'pets#index'
+  devise_for :users
   resources :pets do
     resources :reviews, :contracts, only: [:create]
   end
