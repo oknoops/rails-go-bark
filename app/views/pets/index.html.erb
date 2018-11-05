@@ -1,11 +1,29 @@
-<h1>Pets</h1>
-<%  @pets.each do |pet| %>
-<%= pet.name %>
-<% end %>
-<%= link_to 'add a pet', new_pet_path %>
-<% if user_signed_in? %>
-<%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-<% else %>
-<%= link_to "Sign In", new_user_session_path %>
-<% end  %>
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.5) 0%, rgba(0,36,61,0.5) 50%), url('https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');">
+  <div class="banner-content">
+    <h1>Go Bark!</h1>
+    <p>Need someone to take care of your pet?</p>
+    <a class="btn btn-primary btn-lg">Add a pet!</a>
+  </div>
+</div>
+
+<div class = 'container'>
+  <div class = 'row'>
+    <div class = 'col-sm-6'>
+      <div class = 'petcard' style = 'background-image: url("https://images.pexels.com/photos/434090/pexels-photo-434090.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");'>
+        <% @pets.each do |pet| %>
+          <div class = 'petcard-name'>
+            <%= pet.name %>
+          </div>
+          <div class = 'petcard-owner'>
+            <%= pet.user.name %>
+          </div>
+          <div class = 'petcard-price'>
+            <%= pet.price %> €/jour
+          </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
 
