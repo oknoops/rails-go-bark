@@ -1,10 +1,15 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-4">
       <div class="pet-name">
         <h1>
           <%=@pet.name%>
         </h1>
+        <h2>
+          <% @average.times do %>
+            <i class='fas fa-star'></i>
+          <% end %>
+        </h2>
         <h3>
           <% if policy(@pet).edit? %>
             <%= link_to ("<i class='fas fa-edit'></i>").html_safe, edit_pet_path %>
@@ -32,24 +37,48 @@
          <% end  %>
        </p>
       </div>
-      <div class="review-form">
-        <%= simple_form_for [@pet, @review] do |f| %>
-          <%= f.input :rating %>
-          <%= f.input :description %>
-          <%= f.submit %>
+      <div class="contract-form">
+        <%= simple_form_for [@pet, @contract] do |f| %>
+          <h3>Book Now</h3>
+          <%= f.error_notification %>
+          <div class="col-md-6">
+            <%= f.input :start_date %>
+          </div>
+          <div class="col-md-6">
+            <%= f.input :end_date %>
+            <%= f.submit %>
+          </div>
         <% end %>
       </div>
     </div>
 
-    <div class="col-md-9">
+    <div class="col-md-8">
       <div class="pet-pics" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-         url(<%= cl_image_path @pet.photo, height: 400, width: 400 %>)">>
+         url(<%= cl_image_path @pet.photo %>)">
     </div>
   </div>
 
 
   <div class="row">
-
+    <div class="col-md-8 col-md-offset-4">
+      <% contracts = current_user.contracts.map do |c| %>
+        <% c.pet %>
+      <% end  %>
+      <% if contracts.include? @pet %>
+        <% cont = current_user.contracts.select {|cont| cont.pet == @pet} %>
+        <% cont.each do |c|  %>
+          You already rented this pet from <%= c.start_date %> to <%= c.end_date %>
+          <br>
+        <% end  %>
+      <% end %>
+      <div class="review-form">
+        <%= simple_form_for [@pet, @review] do |f| %>
+          <%= f.error_notification %>
+          <%= f.input :rating %>
+          <%= f.input :description %>
+          <%= f.submit %>
+        <% end %>
+      </div>
   </div>
 </div>
 

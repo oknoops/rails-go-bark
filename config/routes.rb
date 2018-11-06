@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   # get 'users/destroy'
 
   root to: 'pets#index'
+  get 'pets/search', to: 'pets#search'
   devise_for :users
   resources :pets do
     resources :reviews, :contracts, only: [:create]

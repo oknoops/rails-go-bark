@@ -6,11 +6,15 @@ class ContractsController < ApplicationController
     if @contract.save
       redirect_to pet_path(@contract.pet)
     else
-      render :new
+      @errors = @contract.errors.messages
+      redirect_to pet_path(@contract.pet)
     end
+    authorize @contract
   end
 
+  private
+
   def contract_params
-    params.require(:contract).permit(:date)
+    params.require(:contract).permit(:start_date, :end_date)
   end
 end
