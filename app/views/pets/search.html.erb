@@ -1,0 +1,19 @@
+<div class = 'container'>
+  <div class = 'row'>
+    <h2>We found <%= @pets.size%> results </h2>
+    <% @pets.each do |pet| %>
+    <div class = 'col-sm-4'>
+      <a href="/pets/<%= pet.id %>" style = "text-decoration: none">
+        <div class = 'petcard' style = "background-image: url(<%= cl_image_path pet.photo %>);">
+          <div class = 'petcard-image'></div>
+          <div class = 'petcard-description'>
+            <div class = 'petcard-name'>
+              <%= pet.name %>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <% end %>
+  </div>
+</div>

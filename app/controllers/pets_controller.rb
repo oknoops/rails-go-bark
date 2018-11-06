@@ -9,6 +9,14 @@ class PetsController < ApplicationController
   def show
     @review = Review.new
     @contract = Contract.new
+    total = @pet.reviews.map do
+      |review| review.rating
+    end
+    if total.size == 0
+      @average = 0
+    else
+      @average = total.sum / total.size
+    end
   end
 
   def new
@@ -41,6 +49,11 @@ class PetsController < ApplicationController
   def destroy
     @pet.destroy
      redirect_to pets_path
+  end
+
+  def search
+    @pets = Pet.where("name LIKE '%#{params[:tag]}%'")
+    authorize @pets
   end
 
   private
