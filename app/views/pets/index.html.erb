@@ -10,21 +10,17 @@
 <div class = 'container'>
   <div class = 'row'>
     <% @pets.each do |pet| %>
-    <div class = 'col-sm-6'>
-      <div class = 'petcard'>
-        <div class = petcard-image style ="background-image: url(<%= cl_image_path pet.photo%>) "></div>
-        <div class = 'petcard-description'>
-          <div class = 'petcard-name'>
-            <%= pet.name %>
-          </div>
-          <div class = 'petcard-owner'>
-            <%= pet.user.name %>
-          </div>
-          <div class = 'petcard-price'>
-            <%= pet.price %> €/day
+    <div class = 'col-sm-4'>
+      <a href="/pets/<%= pet.id %>" style = "text-decoration: none">
+        <div class = 'petcard' style = "background-image: url(<%= cl_image_path pet.photo %>);">
+          <div class = 'petcard-image'></div>
+          <div class = 'petcard-description'>
+            <div class = 'petcard-name'>
+              <%= pet.name %>
+            </div>
           </div>
         </div>
-      </div>
+      </a>
     </div>
     <% end %>
   </div>
