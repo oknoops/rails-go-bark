@@ -1,5 +1,5 @@
 <%= simple_form_for(@pet) do |f| %>
-
+  <%= f.error_notification %>
   <%= f.input :name %>
   <%= f.input :price %>
   <%= f.input :specie, collection: [ "Dog", "Cat", "Bird","Reptile","Dragon","Unicorn"] %>
