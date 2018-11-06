@@ -1,7 +1,59 @@
+body, h1, h2{
+  font-family: 'Montserrat', sans-serif;
+}
+
 .pet-pics {
   height: 90vh;
   background: cover;
   background-position: center;
   margin: 20px;
   background-repeat: no-repeat;
+}
+
+.container{
+  width: 100vw;
+  height: 70vh;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.welcome{
+  position: relative;
+  background-image: url("https://images.pexels.com/photos/406014/pexels-photo-406014.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-position: center;
+}
+
+.title-welcome{
+  position: absolute;
+  color: black;
+  top : 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.information{
+  position: relative;
+}
+
+.user-description{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 50%;
+}
+
+.details{
+  text-align: left;
+  margin-left: 20px;
+}
+
+.user-image{
+  background-image: url("https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 50%;
+  left: 0;
+  background-size: cover;
 }
