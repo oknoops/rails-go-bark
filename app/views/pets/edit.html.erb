@@ -2,7 +2,9 @@
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <div class="new-form">
-      <%= render "form", pet: @pet %>
+        <% if policy(@pet).edit?  %>
+          <%= render "form", pet: @pet %>
+        <% end %>
       </div>
     </div>
   </div>

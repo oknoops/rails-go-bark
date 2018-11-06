@@ -1,7 +1,7 @@
 class Pet < ApplicationRecord
 
-  has_many :contracts
-  has_many :reviews
+  has_many :contracts, dependent: :delete_all
+  has_many :reviews, dependent: :delete_all
   belongs_to :user
   validates :photo, presence: true
   validates :name, presence: true
