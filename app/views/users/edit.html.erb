@@ -1,15 +1,19 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
+     <% if policy(@user).update?  %>
       <%= simple_form_for (@user) do |f| %>
         <%= f.input :name %>
         <%= f.input :last_name %>
         <%= f.input :phone_number %>
         <%= f.input :address %>
         <%= f.input :photo %>
-        <%= f.input :photo_cache, as: :hidden %>
+        <%= f.input :avatar_cache, as: :hidden %>
         <%= f.button :submit %>
       <% end %>
+      <% else %>
+      you ain't this profile
+    <% end %>
     </div>
   </div>
 </div>

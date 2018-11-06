@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     authorize @user
   end
 
-#   def user_params
-#     params.require(:users).permit(:name, :photo, :last_name,  :species, :breed)
-# end
+  def user_params
+    params.require(:user).permit(:name, :photo, :last_name, :avatar_cache)
+  end
 end
