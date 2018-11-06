@@ -1,16 +1,50 @@
-<h1>Welcome, <%= @user.name %> <i><%= @user.last_name %></i></h1>
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
-<h2> Your Pets</h2>
-<% @user.pets.each do |p| %>
-<b><%= p.name %></b>
-<%= link_to "Delete", user_path(@user), method: :delete , class:'btn btn-primary'%>
-<% end %>
+<div class = 'container welcome'>
+  <div class = 'title-welcome'>
+    <h1>Welcome <%= @user.name %>!</h1>
+  </div>
+</div>
 
-<h2>Your Personal info</h2>
-<h3> Phone Number </h3>
-<%= @user.phone_number %>
-<%= link_to "Delete", user_path(@user), method: :delete , class:'btn btn-primary'%>
-<h3>User image</h3>
-<%= @user.photo %>
-<%= link_to "Delete", user_path(@user), method: :delete , class:'btn btn-primary'%>
+<div class = 'container information'>
+  <div class = 'user-image'></div>
+  <div class = 'user-description'>
+    <div class = 'title'>
+      <h2>Your Personal info</h2>
+    </div>
+    <div class = 'details'>
+      <h4> <strong>First Name:</strong> <%= @user.name %></h4>
+      <h4> <strong>Last Name:</strong> <%= @user.last_name %></h4>
+      <h4> <strong>Phone Number:</strong> <%= @user.phone_number %></h4>
+      <h4> <strong>Email address:</strong> <%= @user.email %> </h4>
+      <h4> <strong>Home Address:</strong> </h4>
+      <h4> <strong>Average Rating:</strong> </h4>
+    </div>
+    <div class = 'col-sm-6'>
+      <a href="#" class = 'btn-primary btn'> Delete </a>
+    </div>
+    <div class = 'col-sm-6'>
+      <a href="#" class = 'btn-primary btn'> Edit </a>
+    </div>
+  </div>
+</div>
 
+<div class = 'container pets'>
+  <div class = 'row'>
+    <h2> Your Pets </h2>
+    <% @user.pets.each do |pet| %>
+    <div class = 'col-sm-4'>
+      <a href="/pets/<%= pet.id %>" style = "text-decoration: none">
+        <div class = 'petcard' style = "background-image: url(<%= cl_image_path pet.photo %>);">
+          <div class = 'petcard-image'></div>
+          <div class = 'petcard-description'>
+            <div class = 'petcard-name'>
+              <%= pet.name %>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <% end %>
+  </div>
+</div>
