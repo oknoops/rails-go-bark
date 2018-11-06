@@ -1,12 +1,12 @@
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 
-<div class = 'container welcome'>
+<div class = 'welcome'>
   <div class = 'title-welcome'>
     <h1>Welcome <%= @user.name %>!</h1>
   </div>
 </div>
 
-<div class = 'container information'>
+<div class = 'information'>
   <div class = 'user-image'></div>
   <div class = 'user-description'>
     <div class = 'title'>
@@ -21,21 +21,31 @@
       <h4> <strong>Average Rating:</strong> </h4>
     </div>
     <div class = 'col-sm-6'>
-      <a href="#" class = 'btn-primary btn'> Delete </a>
+      <% if policy(@user).destroy? %>
+      <a href="#" class = 'btn-primary btn'> Delete Profile </a>
+      <% end %>
     </div>
     <div class = 'col-sm-6'>
-      <a href="#" class = 'btn-primary btn'> Edit </a>
+      <% if policy(@user).update? %>
+      <a href="#" class = 'btn-primary btn'> Edit Profile </a>
+      <% end %>
     </div>
   </div>
 </div>
 
-<div class = 'container pets'>
-  <div class = 'row'>
-    <h2> Your Pets </h2>
+<div class = 'picture-dog'>
+
+</div>
+
+<div class = 'pets'>
+  <div class="row">
+    <div class="col-sm-12">
+      <h2 style = "text-align: center;"> Your Pets </h2>
+    </div>
     <% @user.pets.each do |pet| %>
-    <div class = 'col-sm-4'>
-      <a href="/pets/<%= pet.id %>" style = "text-decoration: none">
-        <div class = 'petcard' style = "background-image: url(<%= cl_image_path pet.photo %>);">
+      <div class = 'col-sm-4'>
+        <a href="/pets/<%= pet.id %>" style = "text-decoration: none">
+          <div class = 'petcard' style = "background-image: url(<%= cl_image_path pet.photo %>);">
           <div class = 'petcard-image'></div>
           <div class = 'petcard-description'>
             <div class = 'petcard-name'>
@@ -45,6 +55,10 @@
         </div>
       </a>
     </div>
-    <% end %>
+  <% end %>
   </div>
+</div>
+
+<div class = 'picture-dog-bottom'>
+
 </div>
