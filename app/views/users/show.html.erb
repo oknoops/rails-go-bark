@@ -7,7 +7,7 @@
 </div>
 
 <div class = 'information'>
-  <div class = 'user-image'></div>
+  <div class = 'user-image' style="background-image: url(<%= cl_image_path (current_user.avatar) %>)"> </div>
   <div class = 'user-description'>
     <div class = 'title'>
       <h2>Your Personal info</h2>
@@ -17,7 +17,7 @@
       <h4> <strong>Last Name:</strong> <%= @user.last_name %></h4>
       <h4> <strong>Phone Number:</strong> <%= @user.phone_number %></h4>
       <h4> <strong>Email address:</strong> <%= @user.email %> </h4>
-      <h4> <strong>Home Address:</strong> </h4>
+      <h4> <strong>Home Address:</strong> </h4> <%= @user.address %>
       <h4> <strong>Average Rating:</strong> </h4>
     </div>
     <div class = 'col-sm-6'>
