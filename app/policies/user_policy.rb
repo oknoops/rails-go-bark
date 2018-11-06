@@ -19,12 +19,18 @@ class UserPolicy < ApplicationPolicy
   def update?
     record == user
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> e0f2ad6534aa3dec844a6563ce7410de00a66b98
   end
 
   def destroy?
     record == user
+<<<<<<< HEAD
 >>>>>>> 30ce0fa68a47c38e34e424eddb7b7c154a96cf1f
+=======
+>>>>>>> e0f2ad6534aa3dec844a6563ce7410de00a66b98
   end
 
 
