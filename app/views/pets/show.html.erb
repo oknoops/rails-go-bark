@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-4">
       <div class="pet-name">
         <h1>
           <%=@pet.name%>
@@ -37,9 +37,22 @@
          <% end  %>
        </p>
       </div>
+      <div class="contract-form">
+        <%= simple_form_for [@pet, @contract] do |f| %>
+          <h3>Book Now</h3>
+          <%= f.error_notification %>
+          <div class="col-md-6">
+            <%= f.input :start_date %>
+          </div>
+          <div class="col-md-6">
+            <%= f.input :end_date %>
+            <%= f.submit %>
+          </div>
+        <% end %>
+      </div>
     </div>
 
-    <div class="col-md-9">
+    <div class="col-md-8">
       <div class="pet-pics" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
          url(<%= cl_image_path @pet.photo %>)">
     </div>
@@ -47,7 +60,7 @@
 
 
   <div class="row">
-    <div class="col-md-9 col-md-offset-3">
+    <div class="col-md-8 col-md-offset-4">
       <% contracts = current_user.contracts.map do |c| %>
         <% c.pet %>
       <% end  %>
@@ -60,16 +73,9 @@
       <% end %>
       <div class="review-form">
         <%= simple_form_for [@pet, @review] do |f| %>
+          <%= f.error_notification %>
           <%= f.input :rating %>
           <%= f.input :description %>
-          <%= f.submit %>
-        <% end %>
-      </div>
-      <div class="contract-form">
-        <%= simple_form_for [@pet, @contract] do |f| %>
-          <h3>Book Now</h3>
-          <%= f.input :start_date %>
-          <%= f.input :end_date %>
           <%= f.submit %>
         <% end %>
       </div>
