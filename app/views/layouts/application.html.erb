@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>TODO</title>
+    <title>Go Bark</title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
@@ -19,7 +19,7 @@
       </a>
 
       <div class="navbar-wagon-right hidden-xs hidden-sm">
-        <a href="" class="navbar-wagon-item navbar-wagon-link">Add a Pet</a>
+        <a href="/pets/new" class="navbar-wagon-item navbar-wagon-link">Add a Pet</a>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         </form>
@@ -34,7 +34,7 @@
               <p><%= current_user.name %></p>
             </div>
           <% else %>
-            <a href="" class="navbar-wagon-item navbar-wagon-link">Sign In</a>
+            <a href="/users/sign_in" class="navbar-wagon-item navbar-wagon-link">Sign In</a>
           <% end %>
         </div>
       </div>
