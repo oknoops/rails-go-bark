@@ -1,6 +1,9 @@
 body, h1, h2{
   font-family: 'Montserrat', sans-serif;
 }
+h4{
+  margin-bottom: 20px;
+}
 
 .pet-pics {
   height: 90vh;
@@ -10,17 +13,15 @@ body, h1, h2{
   background-repeat: no-repeat;
 }
 
-.container{
+.welcome{
   width: 100vw;
   height: 70vh;
   text-align: center;
   margin-bottom: 20px;
-}
-
-.welcome{
   position: relative;
   background-image: url("https://images.pexels.com/photos/406014/pexels-photo-406014.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
   background-position: center;
+  background-attachment: fixed;
 }
 
 .title-welcome{
@@ -33,6 +34,10 @@ body, h1, h2{
 
 .information{
   position: relative;
+  width: 100vw;
+  height: 50vh;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .user-description{
@@ -55,5 +60,30 @@ body, h1, h2{
   bottom: 0;
   right: 50%;
   left: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.pets{
+  height: 50vh;
+  width: 100vw;
+  background-color: white;
+}
+
+.picture-dog{
+  height: 70vh;
+  width: 100vw;
+  background-image: url("https://images.pexels.com/photos/38284/dog-trainer-silhouettes-sunset-38284.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.picture-dog-bottom{
+  height: 50vh;
+  width: 100vw;
+  background-image: url("https://images.pexels.com/photos/406014/pexels-photo-406014.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-position: bottom;
+  background-attachment: fixed;
   background-size: cover;
 }
