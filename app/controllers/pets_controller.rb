@@ -8,6 +8,7 @@ class PetsController < ApplicationController
 
   def show
     @review = Review.new
+    @contract = Contract.new
   end
 
   def new

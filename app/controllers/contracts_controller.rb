@@ -8,9 +8,12 @@ class ContractsController < ApplicationController
     else
       render :new
     end
+    authorize @contract
   end
 
+  private
+
   def contract_params
-    params.require(:contract).permit(:date)
+    params.require(:contract).permit(:start_date, :end_date)
   end
 end
