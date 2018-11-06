@@ -2,7 +2,7 @@
 
   <%= f.input :name %>
   <%= f.input :price %>
-  <%= f.input :specie %>
+  <%= f.input :specie, collection: [ "Dog", "Cat", "Bird","Reptile","Dragon","Unicorn"] %>
   <%= f.input :breed %>
   <%= f.input :description %>
   <%= f.input :photo %>
