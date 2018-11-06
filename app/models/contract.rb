@@ -2,6 +2,7 @@ class Contract < ApplicationRecord
   belongs_to :pet
   belongs_to :user
 
-  validates :date,  uniqueness: { scope: :pet,
-    message: "Pet already booked" }
+
+  validates :start_date,  presence: true
+  validates :end_date,  presence: true
 end

@@ -1,15 +1,4 @@
-class PetPolicy < ApplicationPolicy
-  def index?
-    true
-  end
-
-  def show?
-    true
-  end
-
-  def new?
-    true
-  end
+class ContractPolicy < ApplicationPolicy
 
   def create?
     true
@@ -21,10 +10,6 @@ class PetPolicy < ApplicationPolicy
 
   def destroy?
     record.user == user
-  end
-
-  def search?
-    true
   end
 
   class Scope < Scope
