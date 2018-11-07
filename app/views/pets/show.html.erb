@@ -29,8 +29,9 @@
         <h3>The owner:</h3>
          <% if @pet.user.avatar? %>
           <img src="<%=  cl_image_path (@pet.user.avatar) %>" alt="" class="avatar">
+          <%= @pet.user.name %>
         <% else %>
-          <div class="dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown"> <%= current_user.name %> </div>
+          <%= @pet.user.name %>
         <% end %>
         <%= @pet.user.name%>
       </div>
