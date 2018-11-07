@@ -31,7 +31,8 @@ class Contract < ApplicationRecord
   # end
   private
     def booking_period_not_overlapped
-      unless Contract.where(
+      contracts = Contract.joins(:pet).where(pets: {id: self.pet.id})
+      unless contracts.where(
         '(start_date <= ? AND end_date >= ?) OR (start_date >= ? AND start_date <= ?)',
         start_date, start_date,
         start_date, end_date
