@@ -40,6 +40,11 @@
       <% contracts = current_user.contracts.map do |c| %>
         <% c.pet %>
       <% end  %>
+      <% if policy(@pet).edit? %>
+        <% @pet.contracts.each do |contract| %>
+          <p> is rented from <%= contract.start_date.strftime("%d/%m/%Y") %> to <%= contract.end_date.strftime("%d/%m/%Y") %> </p>
+        <% end %>
+      <% end  %>
       <% if contracts.include? @pet %>
         <% cont = current_user.contracts.select {|cont| cont.pet == @pet} %>
         <% cont.each do |c|  %>
