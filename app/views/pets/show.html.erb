@@ -37,15 +37,25 @@
          <% end  %>
        </p>
       </div>
+      <% contracts = current_user.contracts.map do |c| %>
+        <% c.pet %>
+      <% end  %>
+      <% if contracts.include? @pet %>
+        <% cont = current_user.contracts.select {|cont| cont.pet == @pet} %>
+        <% cont.each do |c|  %>
+          You rented this pet from <%= c.start_date.strftime("%d/%m/%Y") %> to the <%= c.end_date.strftime("%d/%m/%Y") %>
+          <br>
+        <% end  %>
+      <% end %>
       <div class="contract-form">
         <%= simple_form_for [@pet, @contract] do |f| %>
           <h3>Book Now</h3>
           <%= f.error_notification %>
           <div class="col-md-6">
-            <%= f.input :start_date %>
+            <%= f.input :start_date, :input_html => { :value => DateTime.now.strftime("%d/%m/%Y")}, :as => :string %>
           </div>
           <div class="col-md-6">
-            <%= f.input :end_date %>
+            <%= f.input :end_date, :input_html => { :value => DateTime.now.strftime("%d/%m/%Y ")}, :as => :string %>
             <%= f.submit %>
           </div>
         <% end %>
@@ -61,16 +71,6 @@
 
   <div class="row">
     <div class="col-md-8 col-md-offset-4">
-      <% contracts = current_user.contracts.map do |c| %>
-        <% c.pet %>
-      <% end  %>
-      <% if contracts.include? @pet %>
-        <% cont = current_user.contracts.select {|cont| cont.pet == @pet} %>
-        <% cont.each do |c|  %>
-          You already rented this pet from <%= c.start_date %> to <%= c.end_date %>
-          <br>
-        <% end  %>
-      <% end %>
       <div class="review-form">
         <%= simple_form_for [@pet, @review] do |f| %>
           <%= f.error_notification %>
