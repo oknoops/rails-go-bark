@@ -24,9 +24,14 @@
         <h3>Description of the pet: </h3>
         <%= @pet.description %>
       </div>
+
       <div class = 'col-sm-6'>
         <h3>The owner:</h3>
-        <span class="avatar"> <%= @pet.user.avatar %> </span>
+         <% if current_user.avatar? %>
+          <img src="<%=  cl_image_path (current_user.avatar) %>" alt="" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
+        <% else %>
+          <div class="dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown"> <%= current_user.name %> </div>
+        <% end %>
         <%= @pet.user.name%>
       </div>
     </div>
@@ -78,11 +83,13 @@
 <div class="row" style = "text-align: center;">
   <div class="col-md-8 col-sm-offset-2">
     <div class="review-form" style = 'margin: 30px 0;'>
+      <% unless policy(@pet).edit? %>
       <%= simple_form_for [@pet, @review] do |f| %>
         <%= f.error_notification %>
         <%= f.input :rating %>
         <%= f.input :description %>
         <%= f.submit %>
+      <% end %>
       <% end %>
     </div>
   </div>
@@ -93,15 +100,21 @@
 <div class = 'pet-information'>
   <div class = 'pet-informartion-title'>Rent the Pet?</div>
   <div class = 'pet-informartion-general'>
-    <% contracts = current_user.contracts.map do |c| %>
-      <% c.pet %>
-    <% end  %>
-    <% if contracts.include? @pet %>
-      <% cont = current_user.contracts.select {|cont| cont.pet == @pet} %>
+   <% contracts = current_user.contracts.map do |c| %>
+        <% c.pet %>
+      <% end  %>
+      <% if policy(@pet).edit? %>
+        <% @pet.contracts.each do |contract| %>
+          <p> is rented from <%= contract.start_date.strftime("%d/%m/%Y") %> to <%= contract.end_date.strftime("%d/%m/%Y") %> </p>
+        <% end %>
+      <% end  %>
+      <% if contracts.include? @pet %>
+        <% cont = current_user.contracts.select {|cont| cont.pet == @pet} %>
         <% cont.each do |c|  %>
-          You rented this pet from <%= c.start_date.strftime("%d/%m/%Y") %> to the <%= c.end_date.strftime("%d/%m/%Y") %><br>
+          You rented this pet from <%= c.start_date.strftime("%d/%m/%Y") %> to the <%= c.end_date.strftime("%d/%m/%Y") %>
+          <br>
         <% end  %>
-    <% end %>
+      <% end %>
   </div>
 </div>
 
