@@ -20,9 +20,12 @@
 
       <div class="navbar-wagon-right hidden-xs hidden-sm">
         <a href="/pets/new" class="navbar-wagon-item navbar-wagon-link">Add a Pet</a>
-        <form class="form-inline my-2 my-lg-0" action="search" method="get">
+          <%= form_tag(pets_search_path, method: "get") do %>
+            <%= text_field_tag :tag, nil, placeholder: 'Search' %>
+          <% end %>
+<!--         <form class="form-inline my-2 my-lg-0" action="" method="get">
           <input class="form-control mr-sm-2" type="search" name="tag" placeholder="Search" aria-label="Search">
-        </form>
+        </form> -->
         <div class="navbar-wagon-item">
           <% if user_signed_in? %>
             <div class="dropdown" >
