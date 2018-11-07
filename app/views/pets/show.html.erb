@@ -85,14 +85,16 @@
 <div class="row" style = "text-align: center;">
   <div class="col-md-8 col-sm-offset-2">
     <div class="review-form" style = 'margin: 30px 0;'>
-      <% if policy(@pet).edit? %>
-      You cannot rate your own pet you sick fuck
-      <% else %>
-        <%= simple_form_for [@pet, @review] do |f| %>
-          <%= f.error_notification %>
-          <%= f.input :rating %>
-          <%= f.input :description %>
-          <%= f.submit %>
+      <% if user_signed_in? %>
+        <% if policy(@pet).edit? %>
+        You cannot rate your own pet you sick fuck
+        <% else %>
+          <%= simple_form_for [@pet, @review] do |f| %>
+            <%= f.error_notification %>
+            <%= f.input :rating %>
+            <%= f.input :description %>
+            <%= f.submit %>
+          <% end %>
         <% end %>
       <% end %>
     </div>
@@ -104,20 +106,22 @@
 <div class = 'pet-information'>
   <div class = 'pet-informartion-title'>Rent the Pet?</div>
   <div class = 'pet-informartion-general'>
-   <% contracts = current_user.contracts.map do |c| %>
-        <% c.pet %>
-      <% end  %>
-      <% if policy(@pet).edit? %>
-        <% @pet.contracts.each do |contract| %>
-          <p> is rented from <%= contract.start_date.strftime("%d/%m/%Y") %> to <%= contract.end_date.strftime("%d/%m/%Y") %> </p>
-        <% end %>
-      <% end  %>
-      <% if contracts.include? @pet %>
-        <% cont = current_user.contracts.select {|cont| cont.pet == @pet} %>
-        <% cont.each do |c|  %>
-          You rented this pet from <%= c.start_date.strftime("%d/%m/%Y") %> to the <%= c.end_date.strftime("%d/%m/%Y") %>
-          <br>
+    <% if user_signed_in? %>
+      <%contracts = current_user.contracts.map do |c| %>
+          <% c.pet %>
         <% end  %>
+        <% if policy(@pet).edit? %>
+          <% @pet.contracts.each do |contract| %>
+            <p> is rented from <%= contract.start_date.strftime("%d/%m/%Y") %> to <%= contract.end_date.strftime("%d/%m/%Y") %> </p>
+          <% end %>
+        <% end  %>
+        <% if contracts.include? @pet %>
+          <% cont = current_user.contracts.select {|cont| cont.pet == @pet} %>
+          <% cont.each do |c|  %>
+            You rented this pet from <%= c.start_date.strftime("%d/%m/%Y") %> to the <%= c.end_date.strftime("%d/%m/%Y") %>
+            <br>
+          <% end  %>
+        <% end %>
       <% end %>
   </div>
 </div>
@@ -125,11 +129,13 @@
 <div class="row" style = "text-align: center;">
   <div class="col-md-4 col-sm-offset-4">
     <div class="contract-form" style = 'margin-top: 20px;'>
-      <%= simple_form_for [@pet, @contract] do |f| %>
-        <%= f.error_notification %>
-        <%= f.input :start_date, :input_html => { :value => DateTime.now.strftime("%d/%m/%Y")}, :as => :string %>
-        <%= f.input :end_date, :input_html => { :value => DateTime.now.strftime("%d/%m/%Y ")}, :as => :string %>
-          <%= f.submit %>
+      <% if user_signed_in? %>
+        <%= simple_form_for [@pet, @contract] do |f| %>
+          <%= f.error_notification %>
+          <%= f.input :start_date, :input_html => { :value => DateTime.now.strftime("%d/%m/%Y")}, :as => :string %>
+          <%= f.input :end_date, :input_html => { :value => DateTime.now.strftime("%d/%m/%Y ")}, :as => :string %>
+            <%= f.submit %>
+        <% end %>
       <% end %>
     </div>
   </div>
