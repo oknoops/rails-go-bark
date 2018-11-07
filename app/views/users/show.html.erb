@@ -75,7 +75,7 @@
     </div>
     <% @user.contracts.each do |contract| %>
       <div class = 'col-sm-4'>
-        <a href="/pets<%contract.pet.id %>" style = "text-decoration: none">
+        <a href="/pets/<%= contract.pet.id %>" style = "text-decoration: none">
           <div class = 'petcard' style = "background-image: url(<%= cl_image_path contract.pet.photo %>);">
           <div class = 'petcard-image'></div>
           <div class = 'petcard-description'>
