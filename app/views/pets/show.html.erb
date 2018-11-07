@@ -33,7 +33,7 @@
          <p><% review.rating.times do %>
          <i class='fas fa-star'></i>
          <% end %> ----
-         <%= review.description %></p>
+         <%= review.description %> (<%= review.user.name %>)</p>
          <% end  %>
        </p>
       </div>
@@ -77,11 +77,13 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-4">
       <div class="review-form">
+        <% unless policy(@pet).edit? %>
         <%= simple_form_for [@pet, @review] do |f| %>
           <%= f.error_notification %>
           <%= f.input :rating %>
           <%= f.input :description %>
           <%= f.submit %>
+        <% end %>
         <% end %>
       </div>
   </div>
