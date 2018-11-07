@@ -55,7 +55,7 @@
           <div class = 'petcard-description'>
             <div class = 'petcard-name'>
               <%= pet.name %>
-              <% pet.contracts.each do |contract| %>
+              <% pet.contracts.sort.take(1).each do |contract| %>
               is rented from <%= contract.start_date.strftime("%d/%m/%Y") %> to <%= contract.end_date.strftime("%d/%m/%Y") %>
               <% end %>
             </div>
