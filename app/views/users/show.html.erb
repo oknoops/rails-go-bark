@@ -22,12 +22,12 @@
     </div>
     <div class = 'col-sm-6'>
       <% if policy(@user).destroy? %>
-      <a href="#" class = 'btn-primary btn'> Delete Profile </a>
+        <%= link_to 'Delete Your Profile', user_registration_path(current_user), class: "btn btn-primary", method: :delete, data: { confirm: "Are you sure?, all your pets and reviews will be deleted. You will lose all the cuteness" }  %>
       <% end %>
     </div>
     <div class = 'col-sm-6'>
       <% if policy(@user).update? %>
-      <a href="#" class = 'btn-primary btn'> Edit Profile </a>
+      <%= link_to 'Edit Profile', edit_user_path(current_user), class: 'btn btn-primary' %>
       <% end %>
     </div>
   </div>
