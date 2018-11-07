@@ -17,8 +17,13 @@
       <h4> <strong>Last Name:</strong> <%= @user.last_name %></h4>
       <h4> <strong>Phone Number:</strong> <%= @user.phone_number %></h4>
       <h4> <strong>Email address:</strong> <%= @user.email %> </h4>
-      <h4> <strong>Home Address:</strong> </h4> <%= @user.address %>
-      <h4> <strong>Average Rating:</strong> </h4>
+      <h4> <strong>Home Address:</strong> <%= @user.address %> </h4>
+      <h4>
+        <strong>Average Rating:</strong>
+        <% @average.times do%>
+          <i class='fas fa-star'></i>
+        <% end %>
+      </h4>
     </div>
     <div class = 'col-sm-6'>
       <% if policy(@user).destroy? %>
@@ -50,6 +55,9 @@
           <div class = 'petcard-description'>
             <div class = 'petcard-name'>
               <%= pet.name %>
+              <% pet.contracts.each do |contract| %>
+              is rented from <%= contract.start_date.strftime("%d/%m/%Y") %> to <%= contract.end_date.strftime("%d/%m/%Y") %>
+              <% end %>
             </div>
           </div>
         </div>
@@ -60,5 +68,29 @@
 </div>
 
 <div class = 'picture-dog-bottom'>
+  </div>
 
+  <div class = 'pets'>
+  <div class="row">
+    <div class="col-sm-12">
+      <h2 style = "text-align: center;"> Your Contracts </h2>
+    </div>
+    <% @user.contracts.each do |contract| %>
+      <div class = 'col-sm-4'>
+        <a href="/pets<%contract.pet.id %>" style = "text-decoration: none">
+          <div class = 'petcard' style = "background-image: url(<%= cl_image_path contract.pet.photo %>);">
+          <div class = 'petcard-image'></div>
+          <div class = 'petcard-description'>
+            <div class = 'petcard-name'>
+              You rented <%= contract.pet.name %>
+              from <%= contract.start_date.strftime("%d/%m/%Y") %> to <%= contract.end_date.strftime("%d/%m/%Y") %>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  <% end %>
+  </div>
 </div>
+
+
