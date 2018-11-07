@@ -1,84 +1,131 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-4">
-      <div class="pet-name">
-        <h1>
-          <%=@pet.name%>
-        </h1>
-        <h2>
-          <% @average.times do %>
-            <i class='fas fa-star'></i>
-          <% end %>
-        </h2>
-        <h3>
-          <% if policy(@pet).edit? %>
-            <%= link_to ("<i class='fas fa-edit'></i>").html_safe, edit_pet_path %>
-          <% end  %>
-          <% if policy(@pet).destroy? %>
-            <%= link_to ("<i class='fas fa-trash-alt'></i>").html_safe, pet_path(@pet), method: :delete, data: { confirm: "Are you sure?" } %>
-          <% end %>
-        </h3>
-      </div>
-      <div class="description">
-       <p><%= @pet.description %></p>
-       <p> <%= @pet.price%> <i class="fas fa-euro-sign"></i> </p>
-       <p> <%= @pet.user.name%>
-        <span class="avatar"> <%= @pet.user.avatar %> </span>
-       </p>
-       <% unless @pet.specie.nil? %>
-       <p>Specie : <i class="fas fa-<%=@pet.specie.downcase%>"></i></p>
-       <% end  %>
-       <p>Breed : <%= @pet.breed.capitalize %></p>
-       <p> <% @pet.reviews.each do |review| %>
-         <p><% review.rating.times do %>
-         <i class='fas fa-star'></i>
-         <% end %> ----
-         <%= review.description %></p>
-         <% end  %>
-       </p>
-      </div>
-      <% contracts = current_user.contracts.map do |c| %>
-        <% c.pet %>
+<div class="introduction">
+  <div class="pet-name">
+    <div class = "pet-name-text">
+      <%=@pet.name%><br>
+      <% @average.times do  %>
+        <i class='fas fa-star'></i>
+      <% end %><br>
+      <% if policy(@pet).edit? %>
+        <%= link_to ("<i class='fas fa-edit'></i>").html_safe, edit_pet_path %>
       <% end  %>
-      <% if contracts.include? @pet %>
-        <% cont = current_user.contracts.select {|cont| cont.pet == @pet} %>
-        <% cont.each do |c|  %>
-          You rented this pet from <%= c.start_date.strftime("%d/%m/%Y") %> to the <%= c.end_date.strftime("%d/%m/%Y") %>
-          <br>
-        <% end  %>
+      <% if policy(@pet).destroy? %>
+        <%= link_to ("<i class='fas fa-trash-alt'></i>").html_safe, pet_path(@pet), method: :delete, data: { confirm: "Are you sure?" } %>
       <% end %>
-      <div class="contract-form">
-        <%= simple_form_for [@pet, @contract] do |f| %>
-          <h3>Book Now</h3>
-          <%= f.error_notification %>
-          <div class="col-md-6">
-            <%= f.input :start_date, :input_html => { :value => DateTime.now.strftime("%d/%m/%Y")}, :as => :string %>
-          </div>
-          <div class="col-md-6">
-            <%= f.input :end_date, :input_html => { :value => DateTime.now.strftime("%d/%m/%Y ")}, :as => :string %>
-            <%= f.submit %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="col-md-8">
-      <div class="pet-pics" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
-         url(<%= cl_image_path @pet.photo %>)">
     </div>
   </div>
+  <div class="picture" style = 'background-image: url("https://images.pexels.com/photos/406014/pexels-photo-406014.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");'></div>
+</div>
 
-
-  <div class="row">
-    <div class="col-md-8 col-md-offset-4">
-      <div class="review-form">
-        <%= simple_form_for [@pet, @review] do |f| %>
-          <%= f.error_notification %>
-          <%= f.input :rating %>
-          <%= f.input :description %>
-          <%= f.submit %>
-        <% end %>
+<div class = 'pet-information'>
+  <div class = 'pet-informartion-title'>Description</div>
+  <div class = pet-informartion-general>
+    <div class = 'row'>
+      <div class = 'col-sm-6'>
+        <h3>Description of the pet: </h3>
+        <%= @pet.description %>
       </div>
+      <div class = 'col-sm-6'>
+        <h3>The owner:</h3>
+        <span class="avatar"> <%= @pet.user.avatar %> </span>
+        <%= @pet.user.name%>
+      </div>
+    </div>
+
+    <hr/>
+
+    <div class = 'row'>
+
+      <div class = 'col-sm-4'>
+        <div class = pet-description-circle>
+          <% unless @pet.specie.nil? %>
+            <h3> Specie : </h3>
+            <i class="fas fa-<%=@pet.specie.downcase%>"></i>
+          <% end  %>
+        </div>
+      </div>
+
+      <div class = 'col-sm-4'>
+        <div class = pet-description-circle>
+          <h2> Price: </h2>
+          <%= @pet.price%> <i class="fas fa-euro-sign"></i> / day
+        </div>
+      </div>
+
+      <div class = 'col-sm-4'>
+        <div class = pet-description-circle>
+          <h3> Breed : </h3>
+          <%= @pet.breed.capitalize %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<div class = 'picture-dog-2'></div>
+
+<div class = 'pet-information'>
+  <div class = 'pet-informartion-title'>Reviews</div>
+  <div class = pet-informartion-general>
+    <% @pet.reviews.each do |review| %>
+      <% review.rating.times do %>
+        <i class='fas fa-star'></i>
+      <% end %>
+      <%= review.description %><br>
+    <% end  %>
+  </div>
+</div>
+
+<div class="row" style = "text-align: center;">
+  <div class="col-md-8 col-sm-offset-2">
+    <div class="review-form" style = 'margin: 30px 0;'>
+      <%= simple_form_for [@pet, @review] do |f| %>
+        <%= f.error_notification %>
+        <%= f.input :rating %>
+        <%= f.input :description %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class = 'picture-dog-3'></div>
+
+<div class = 'pet-information'>
+  <div class = 'pet-informartion-title'>Rent the Pet?</div>
+  <div class = 'pet-informartion-general'>
+    <% contracts = current_user.contracts.map do |c| %>
+      <% c.pet %>
+    <% end  %>
+    <% if contracts.include? @pet %>
+      <% cont = current_user.contracts.select {|cont| cont.pet == @pet} %>
+        <% cont.each do |c|  %>
+          You rented this pet from <%= c.start_date.strftime("%d/%m/%Y") %> to the <%= c.end_date.strftime("%d/%m/%Y") %><br>
+        <% end  %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row" style = "text-align: center;">
+  <div class="col-md-4 col-sm-offset-4">
+    <div class="contract-form" style = 'margin-top: 20px;'>
+      <%= simple_form_for [@pet, @contract] do |f| %>
+        <%= f.error_notification %>
+        <%= f.input :start_date, :input_html => { :value => DateTime.now.strftime("%d/%m/%Y")}, :as => :string %>
+        <%= f.input :end_date, :input_html => { :value => DateTime.now.strftime("%d/%m/%Y ")}, :as => :string %>
+          <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<div class="col-md-8">
+  <div class="pet-pics" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+     url(<%= cl_image_path @pet.photo %>)">
+</div>
+
+
 
