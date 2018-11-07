@@ -19,21 +19,22 @@
 <div class = 'pet-information'>
   <div class = 'pet-informartion-title'>Description</div>
   <div class = pet-informartion-general>
-    <div class = 'row'>
-      <div class = 'col-xs-12 col-sm-6'>
-        <h3>Description of the pet: </h3>
-        <%= @pet.description %>
-      </div>
+    <div class="container">
+      <div class = 'row'>
+        <div class = 'col-xs-12 col-sm-6'>
+          <h3>Description of the pet: </h3>
+          <%= @pet.description %>
+        </div>
 
-      <div class = 'col-sm-6'>
-        <h3>The owner:</h3>
-         <% if @pet.user.avatar? %>
-          <img src="<%=  cl_image_path (@pet.user.avatar) %>" alt="" class="avatar">
-          <%= @pet.user.name %>
-        <% else %>
-          <%= @pet.user.name %>
-        <% end %>
-        <%= @pet.user.name%>
+        <div class = 'col-sm-6'>
+          <h3>The owner:</h3>
+           <% if @pet.user.avatar? %>
+            <img src="<%=  cl_image_path (@pet.user.avatar) %>" alt="" class="avatar">
+            <%= @pet.user.name %>
+          <% else %>
+            <%= @pet.user.name %>
+          <% end %>
+        </div>
       </div>
     </div>
 
