@@ -7,7 +7,7 @@
 </div>
 
 <div class = 'information'>
-  <div class = 'user-image' style="background-image: url(<%= cl_image_path (current_user.avatar) %>)"> </div>
+  <div class = 'user-image' style="background-image: url(<%= cl_image_path (current_user.avatar) if current_user.avatar? %>)"> </div>
   <div class = 'user-description'>
     <div class = 'title'>
       <h2>Your Personal info</h2>

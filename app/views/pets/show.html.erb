@@ -23,7 +23,7 @@
        <p><%= @pet.description %></p>
        <p> <%= @pet.price%> <i class="fas fa-euro-sign"></i> </p>
        <p> <%= @pet.user.name%>
-        <span class="avatar"> <%= @pet.user.photo %> </span>
+        <span class="avatar"> <%= @pet.user.avatar %> </span>
        </p>
        <% unless @pet.specie.nil? %>
        <p>Specie : <i class="fas fa-<%=@pet.specie.downcase%>"></i></p>
