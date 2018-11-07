@@ -1,0 +1,102 @@
+.introduction{
+  position: relative;
+  width: 100vw;
+  height: 50vh;
+  background-color: grey;
+}
+
+.pet-name{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 50%;
+}
+
+.pet-name-text{
+  text-align: center;
+  color: white;
+  font-size: 60px;
+  position: absolute;
+  top : 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.picture{
+  position: absolute;
+  top: 0;
+  bottom: 30px;
+  right: 30px;
+  left: 50%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 0 0 10px 10px;
+}
+
+.pet-information{
+  width: 100vw;
+}
+
+.pet-informartion-title{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: black;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.pet-informartion-general{
+  text-align: center;
+}
+
+hr {
+
+    width: 90%;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 2em auto;
+    padding: 0;
+}
+
+.pet-description-circle{
+  width: 200px;
+  height: 200px;
+  border-radius: 180px;
+  background-color: grey;
+  color: white;
+  text-align: center;
+  margin-left: 30%;
+  margin-bottom: 30px;
+}
+
+.pet-description-circle h2 {
+  padding-top: 50px;
+}
+
+.pet-description-circle h3 {
+  padding-top: 50px;
+}
+
+.picture-dog-2{
+  height: 70vh;
+  width: 100vw;
+  background-image: url("https://images.pexels.com/photos/374906/pexels-photo-374906.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.picture-dog-3{
+  height: 70vh;
+  width: 100vw;
+  background-image: url("https://images.pexels.com/photos/1143369/pexels-photo-1143369.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");
+  background-position: center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+
+
