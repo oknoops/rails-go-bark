@@ -3,7 +3,7 @@
     <div class = "pet-name-text">
       <%=@pet.name%><br>
       <% @average.times do  %>
-        <i class='fas fa-star'></i>
+        <i class='fas fa-star fa-xs'></i>
       <% end %><br>
       <% if policy(@pet).edit? %>
         <%= link_to ("<i class='fas fa-edit'></i>").html_safe, edit_pet_path %>
@@ -13,22 +13,22 @@
       <% end %>
     </div>
   </div>
-  <div class="picture" style = 'background-image: url("https://images.pexels.com/photos/406014/pexels-photo-406014.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260");'></div>
+  <div class="picture" style = 'background-image: url(<%= cl_image_path @pet.photo %>);'></div>
 </div>
 
 <div class = 'pet-information'>
   <div class = 'pet-informartion-title'>Description</div>
   <div class = pet-informartion-general>
     <div class = 'row'>
-      <div class = 'col-sm-6'>
+      <div class = 'col-xs-12 col-sm-6'>
         <h3>Description of the pet: </h3>
         <%= @pet.description %>
       </div>
 
       <div class = 'col-sm-6'>
         <h3>The owner:</h3>
-         <% if current_user.avatar? %>
-          <img src="<%=  cl_image_path (current_user.avatar) %>" alt="" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
+         <% if @pet.user.avatar? %>
+          <img src="<%=  cl_image_path (@pet.user.avatar) %>" alt="" class="avatar">
         <% else %>
           <div class="dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown"> <%= current_user.name %> </div>
         <% end %>
@@ -75,7 +75,7 @@
       <% review.rating.times do %>
         <i class='fas fa-star'></i>
       <% end %>
-      <%= review.description %><br>
+      <%= review.description %> (<%= review.user.name %>)<br>
     <% end  %>
   </div>
 </div>
@@ -83,13 +83,15 @@
 <div class="row" style = "text-align: center;">
   <div class="col-md-8 col-sm-offset-2">
     <div class="review-form" style = 'margin: 30px 0;'>
-      <% unless policy(@pet).edit? %>
-      <%= simple_form_for [@pet, @review] do |f| %>
-        <%= f.error_notification %>
-        <%= f.input :rating %>
-        <%= f.input :description %>
-        <%= f.submit %>
-      <% end %>
+      <% if policy(@pet).edit? %>
+      You cannot rate your own pet you sick fuck
+      <% else %>
+        <%= simple_form_for [@pet, @review] do |f| %>
+          <%= f.error_notification %>
+          <%= f.input :rating %>
+          <%= f.input :description %>
+          <%= f.submit %>
+        <% end %>
       <% end %>
     </div>
   </div>
