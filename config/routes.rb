@@ -19,10 +19,10 @@ Rails.application.routes.draw do
   get 'pets/search', to: 'pets#search'
   devise_for :users
   resources :pets do
-    resources :reviews, :contracts, only: [:create]
+    resources :reviews, :contracts, only: [:create, :edit, :update, :destroy]
   end
 
-  resources :users, except: [:index, :destroy]
+  resources :users, except: [:destroy]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="new-form">
+        <% if policy(@contract).edit? || current_user.admin  %>
+          <%= simple_form_for [@pet, @contract] do |f| %>
+            <%= f.error_notification %>
+            <%= f.input :start_date, :input_html => { :value => DateTime.now.strftime("%d/%m/%Y")}, :as => :string  %>
+            <%= f.input :end_date, :input_html => { :value => DateTime.now.strftime("%d/%m/%Y")}, :as => :string  %>
+            <%= f.button :submit, "Con-FUR-m" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

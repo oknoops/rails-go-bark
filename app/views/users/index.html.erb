@@ -1,0 +1,24 @@
+ <div class = 'container' style="margin-top: 70px;">
+  <div class = 'row' id='list'>
+  <%if current_user.admin %>
+    <% @users.each do |user| %>
+      <div class = 'col-sm-4'>
+        <a href="/users/<%= user.id %>" style = "text-decoration: none">
+            <div class = 'petcard usercard' style = "background-image: url(<%= cl_image_path user.avatar if user.avatar? %>);">
+            <div class = 'petcard-image'></div>
+            <div class = 'petcard-description'>
+              <div class = 'petcard-name'>
+                <%= user.name %>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <% end %>
+  <%else %>
+  <div style =" margin: 80px;">
+    You are not an admin, get the fuck out
+  </div>
+  <% end %>
+  </div>
+</div>

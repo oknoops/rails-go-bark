@@ -39,5 +39,7 @@
     <% end %>
   </div>
 </div>
-<option></option>
 
+<% if user_signed_in? && current_user.admin %>
+  <%= link_to 'List of Users', users_path %>
+<% end %>
