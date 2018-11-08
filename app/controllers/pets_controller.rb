@@ -2,7 +2,15 @@ class PetsController < ApplicationController
   before_action :set_pet, only: [:show, :edit, :update, :destroy]
 
   def index
-    @pets = policy_scope(Pet).order(created_at: :desc)
+    if params[:query].present? && params[:specie].present?
+      @pets = policy_scope(Pet).joins(:user).where("pets.specie like ? AND (pets.name @@ ? OR pets.description @@ ? OR users.name @@ ? OR pets.breed @@ ? OR users.last_name @@ ?)", params[:specie], params[:query], params[:query], params[:query], params[:query], params[:query])
+    elsif params[:query].present?
+      @pets = policy_scope(Pet).joins(:user).where("pets.name @@ ? OR pets.description @@ ? OR users.name @@ ? OR pets.breed @@ ? OR users.last_name @@ ?", params[:query], params[:query], params[:query], params[:query], params[:query])
+    elsif params[:specie].present?
+      @pets = policy_scope(Pet).joins(:user).where("pets.specie ilike ?", params[:specie])
+    else
+      @pets = policy_scope(Pet).order(created_at: :desc)
+    end
   end
 
   def show
@@ -51,7 +59,14 @@ class PetsController < ApplicationController
   end
 
   def search
-    @pets = Pet.where("name LIKE '%#{params[:tag]}%'")
+    sql_query = " \
+      pets.name @@ :query \
+      OR pets.description @@ :query \
+      OR users.name @@ :query \
+      OR pets.breed @@ :query \
+      OR users.last_name @@ :query \
+    "
+    @pets = Pet.joins(:user).where(sql_query, query: "%#{params[:tag]}%")
     authorize @pets
   end
 
