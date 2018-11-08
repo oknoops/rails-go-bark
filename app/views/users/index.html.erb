@@ -1,14 +1,10 @@
-<%if current_user.admin %>
-  <div class = 'container'>
-    <div class = 'row' id='list'>
-        <% @users.each do |user| %>
+ <div class = 'container' style="margin-top: 70px;">
+  <div class = 'row' id='list'>
+  <%if current_user.admin %>
+    <% @users.each do |user| %>
       <div class = 'col-sm-4'>
         <a href="/users/<%= user.id %>" style = "text-decoration: none">
-          <% if user.avatar? %>
-            <div class = 'petcard' style = "background-image: url(<%= if user.avatar? cl_image_path user.avatar
-            else
-              "black"
-              end %>);">
+            <div class = 'petcard usercard' style = "background-image: url(<%= cl_image_path user.avatar if user.avatar? %>);">
             <div class = 'petcard-image'></div>
             <div class = 'petcard-description'>
               <div class = 'petcard-name'>
@@ -16,14 +12,13 @@
               </div>
             </div>
           </div>
-          </div>
         </a>
       </div>
       <% end %>
-    </div>
-  </div>
-  <% else %>
+  <%else %>
   <div style =" margin: 80px;">
-  You are not an admin, get the fuck out
+    You are not an admin, get the fuck out
   </div>
-<% end %>
+  <% end %>
+  </div>
+</div>
