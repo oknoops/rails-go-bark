@@ -28,22 +28,12 @@ textarea#pet_description.form-control.text.optional{
   margin: 2px 10px;
 }
 
-.simple_form input {
-  width: 150px;
-  border-radius: 5px;
-}
-
-.simple_form div.input {
-  margin-bottom: 10px;
-  width: 150px;
-}
-
 div.form-group.pet_breed, div.form-group.pet_name, div.form-group.pet_price, div.form-group.pet_specie{
   display: inline-block;
   padding-bottom: 10px;
 }
 
-.form-control{
+input#pet_name.form-control, input#pet_price.form-control, input#pet_breed.form-control{
   width: 150px;
 }
 
