@@ -1,0 +1,52 @@
+.simple_form{
+  background: #1F99B7;
+  padding: 30px;
+  border-radius: 10px;
+  line-height: 2;
+  font-weight: bold;
+  .input.button{
+    text-align:center;
+  }
+}
+
+div.form-group.text.optional.pet_description{
+  display:inline-grid;
+  text-align: center;
+  width: 100%
+}
+
+textarea#pet_description.form-control.text.optional{
+  width: 100%;
+  min-height: 20px;
+  text-align:center;
+}
+
+.simple_form label {
+  float: left;
+  text-align: center;
+  margin: 2px 10px;
+}
+
+.simple_form input {
+  width: 150px;
+  border-radius: 5px;
+}
+
+.simple_form div.input {
+  margin-bottom: 10px;
+  width: 150px;
+}
+
+.form-group{
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.form-control{
+  width: 150px;
+}
+
+div.form-group.file.required.pet_photo{
+  display: block;
+}
+
