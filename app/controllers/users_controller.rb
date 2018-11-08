@@ -2,21 +2,11 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
 
   def index
-    @users = User.all
+    @users = policy_scope(User).order(created_at: :desc)
   end
 
   def show
-    total = []
-    pets = @user.pets.each do |pet|
-      pet.reviews.each do |review|
-        total << review.rating
-      end
-    end
-    if total.size == 0
-      @average = 0
-    else
-      @average = total.sum / total.size
-    end
+    @average = average(@user)
   end
 
   def edit
@@ -33,12 +23,26 @@ class UsersController < ApplicationController
 
   private
 
+  def average(user)
+    total = []
+    pets = user.pets.each do |pet|
+      pet.reviews.each do |review|
+        total << review.rating
+      end
+    end
+    if total.size == 0
+      return average = 0
+    else
+      return average = total.sum / total.size
+    end
+  end
+
   def set_user
     @user = User.find(params[:id])
     authorize @user
   end
 
   def user_params
-    params.require(:user).permit(:name, :avatar, :last_name, :avatar_cache, :phone_number, :address)
+    params.require(:user).permit(:name, :admin, :avatar, :last_name, :avatar_cache, :phone_number, :address)
   end
 end

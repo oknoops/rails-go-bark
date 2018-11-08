@@ -5,10 +5,10 @@
       <% @average.times do  %>
         <i class='fas fa-star fa-xs'></i>
       <% end %><br>
-      <% if policy(@pet).edit? %>
+      <% if policy(@pet).edit? || current_user.admin %>
         <%= link_to ("<i class='fas fa-edit'></i>").html_safe, edit_pet_path %>
       <% end  %>
-      <% if policy(@pet).destroy? %>
+      <% if policy(@pet).destroy? || current_user.admin %>
         <%= link_to ("<i class='fas fa-trash-alt'></i>").html_safe, pet_path(@pet), method: :delete, data: { confirm: "Are you sure?" } %>
       <% end %>
     </div>
