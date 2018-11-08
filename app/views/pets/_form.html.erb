@@ -1,11 +1,13 @@
 <%= simple_form_for(@pet) do |f| %>
   <%= f.error_notification %>
-  <%= f.input :name %>
-  <%= f.input :price %>
-  <%= f.input :specie, collection: [ "Dog", "Cat", "Bird","Reptile","Dragon","Unicorn"] %>
-  <%= f.input :breed %>
-  <%= f.input :description %>
-  <%= f.input :photo %>
-  <%= f.input :photo_cache, as: :hidden %>
-  <%= f.button :submit, "Con-FUR-m" %>
+  <p>
+    <%= f.input :name, label: 'My pets name is', placeholder: 'Mickey' %>.
+    <%= f.input :specie, label: 'He is a', collection: [ "Dog", "Cat", "Bird","Reptile","Dragon","Unicorn"] %>
+    <%= f.input :breed, placeholder: 'German Shepard', label: 'from the' %> breed.
+    <%= f.input :description, label: 'If I had to describe my pet I would say:', placeholder: 'Very nice and sweet', :input_html => { class: 'input-description'} %>
+    <%= f.input :price, label: 'It will cost you', placeholder: '20' %> every day to rent him.
+    <%= f.input :photo %>
+    <%= f.input :photo_cache, as: :hidden %>
+    <%= f.button :submit, "Con-FUR-m" %>
+  </p>
 <% end %>
