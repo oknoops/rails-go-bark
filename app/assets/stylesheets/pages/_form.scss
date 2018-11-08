@@ -1,4 +1,4 @@
-.simple_form{
+.simple_form.new_pet{
   background: #1F99B7;
   padding: 30px;
   border-radius: 10px;
@@ -34,7 +34,7 @@ textarea#pet_description.form-control.text.optional{
   width: 150px;
 }
 
-.form-group{
+div.form-group.pet_breed, div.form-group.pet_name, div.form-group.pet_price, div.form-group.pet_specie{
   display: inline-block;
   padding-bottom: 10px;
 }
