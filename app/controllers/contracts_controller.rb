@@ -34,11 +34,6 @@ class ContractsController < ApplicationController
 
   private
 
-  def price(pet)
-    length = self.start_date - self.end_date
-    return pet.price * length
-  end
-
   def set_contract_and_pet
     @pet    = Pet.find(params[:pet_id])
     @contract = Contract.find(params[:id])

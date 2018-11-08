@@ -8,6 +8,11 @@ class Contract < ApplicationRecord
   validate :dates
   validate :booking_period_not_overlapped
 
+  def price(pet)
+    length = ((end_date - start_date) / (3600 * 24))
+    return pet.price * length.round
+  end
+
   def dates
     if start_date < Date.today || end_date < start_date
       errors.add(:start_date, "invalid dates")
