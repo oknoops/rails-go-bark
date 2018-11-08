@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="new-form">
+        <% if policy(@review).edit? || current_user.admin  %>
+          <%= simple_form_for [@pet, @review] do |f| %>
+            <%= f.error_notification %>
+            <%= f.input :rating %>
+            <%= f.input :description %>
+            <%= f.button :submit, "Con-FUR-m" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
