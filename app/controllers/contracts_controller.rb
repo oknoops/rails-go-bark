@@ -6,8 +6,7 @@ class ContractsController < ApplicationController
     if @contract.save
       redirect_to pet_path(@contract.pet)
     else
-      @errors = @contract.errors.messages
-      redirect_to pet_path(@contract.pet)
+      render :create
     end
     authorize @contract
   end

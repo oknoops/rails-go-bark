@@ -3,6 +3,7 @@
   width: 100vw;
   height: 50vh;
   background-color: grey;
+  margin-top: 70px;
 }
 
 .pet-name{
@@ -86,6 +87,16 @@ hr {
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
+}
+
+.pet-owner {
+  a {
+    color: black;
+  }
+  a:hover{
+    color: grey;
+    text-decoration: none;
+  }
 }
 
 .Dog1{

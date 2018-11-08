@@ -8,7 +8,21 @@
 </div>
 
 <div class = 'container'>
-  <div class = 'row'>
+  <div class = 'row' id='list'>
+    <div class='col-sm-6 col-sm-offset-3'>
+      <div class='new-form'>
+      <%= form_tag pets_path(anchor: 'list'), method: :get do %>
+        <%= text_field_tag :query,
+          params[:query],
+          placeholder: "Find a pet",
+          class: 'form-controle'
+        %>
+        <%= select_tag :specie, "<option>Dog</option><option>Cat</option><option>Bird </option><option>Reptile</option><option>Dragon</option><option>Unicorn</option>", include_blank: true%>
+        <%= submit_tag "Search cuteness"%>
+      <% end %>
+      </div>
+    </div>
+
     <% @pets.each do |pet| %>
     <div class = 'col-sm-4'>
       <a href="/pets/<%= pet.id %>" style = "text-decoration: none">
@@ -25,5 +39,5 @@
     <% end %>
   </div>
 </div>
-
+<option></option>
 

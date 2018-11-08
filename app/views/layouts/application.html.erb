@@ -12,14 +12,12 @@
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
-
-    <div class = 'navbar-wagon'>
+    <div class = 'navbar-wagon '>
       <a href="/" class="navbar-wagon-brand">
         <i class="fas fa-dog fa-2x"></i>
       </a>
-
-      <div class="navbar-wagon-right hidden-xs hidden-sm">
-        <a href="/pets/new" class="navbar-wagon-item navbar-wagon-link"><i class="fas fa-paw"></i>Add a Pet</a>
+      <div class="navbar-wagon-right">
+        <a href="/pets/new" class="navbar-wagon-item navbar-wagon-link hidden-xs"><i class="fas fa-paw"></i>Add a Pet</a><div><button type="submit"><i class="fa fa-search"></i></div>
           <%= form_tag(pets_search_path, method: "get") do %>
             <%= text_field_tag :tag, nil, placeholder: 'Search' %>
           <% end %>
