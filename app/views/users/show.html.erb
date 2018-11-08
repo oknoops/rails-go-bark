@@ -2,7 +2,7 @@
 
 <div class = 'welcome'>
   <div class = 'title-welcome'>
-    <h1>Welcome <%= @user.name %>!</h1>
+    <h1> <%= @user.name %>'s profile!</h1>
   </div>
 </div>
 
@@ -10,14 +10,16 @@
   <div class = 'user-image' style="background-image: url(<%= cl_image_path (@user.avatar) if @user.avatar? %>)"> </div>
   <div class = 'user-description'>
     <div class = 'title'>
-      <h2>Your Personal info</h2>
+      <h2>Personal info</h2>
     </div>
     <div class = 'details'>
       <h4> <strong>First Name:</strong> <%= @user.name %></h4>
       <h4> <strong>Last Name:</strong> <%= @user.last_name %></h4>
-      <h4> <strong>Phone Number:</strong> <%= @user.phone_number %></h4>
-      <h4> <strong>Email address:</strong> <%= @user.email %> </h4>
-      <h4> <strong>Home Address:</strong> <%= @user.address %> </h4>
+      <% if @user == current_user %>
+        <h4> <strong>Phone Number:</strong> <%= @user.phone_number %></h4>
+        <h4> <strong>Email address:</strong> <%= @user.email %> </h4>
+        <h4> <strong>Home Address:</strong> <%= @user.address %> </h4>
+      <% end %>
       <h4>
         <strong>Average Rating:</strong>
         <% @average.times do%>
@@ -43,7 +45,7 @@
 <div class = 'pets'>
   <div class="row">
     <div class="col-sm-12">
-      <h2 style = "text-align: center;"> Your Pets </h2>
+      <h2 style = "text-align: center;"> <%= @user.name %>'s Pets </h2>
     </div>
     <% @user.pets.each do |pet| %>
       <div class = 'col-sm-4'>
@@ -65,29 +67,30 @@
   </div>
 </div>
 
-<div class = 'picture-dog-bottom'>
-  </div>
+<div class = 'picture-dog-bottom'></div>
 
-  <div class = 'pets'>
+<div class = 'pets'>
   <div class="row">
-    <div class="col-sm-12">
-      <h2 style = "text-align: center;"> Your Contracts </h2>
-    </div>
-    <% @user.contracts.each do |contract| %>
-      <div class = 'col-sm-4'>
-        <a href="/pets/<%= contract.pet.id %>" style = "text-decoration: none">
-          <div class = 'petcard' style = "background-image: url(<%= cl_image_path contract.pet.photo %>);">
-          <div class = 'petcard-image'></div>
-          <div class = 'petcard-description'>
-            <div class = 'petcard-name'>
-              You rented <%= contract.pet.name %>
-              from <%= contract.start_date.strftime("%d/%m/%Y") %> to <%= contract.end_date.strftime("%d/%m/%Y") %>
+    <% if @user == current_user %>
+      <div class="col-sm-12">
+        <h2 style = "text-align: center;"> Your Contracts </h2>
+      </div>
+      <% @user.contracts.each do |contract| %>
+        <div class = 'col-sm-4'>
+          <a href="/pets/<%= contract.pet.id %>" style = "text-decoration: none">
+            <div class = 'petcard' style = "background-image: url(<%= cl_image_path contract.pet.photo %>);">
+              <div class = 'petcard-image'></div>
+              <div class = 'petcard-description'>
+                <div class = 'petcard-name'>
+                  You rented <%= contract.pet.name %>
+                  from <%= contract.start_date.strftime("%d/%m/%Y") %> to <%= contract.end_date.strftime("%d/%m/%Y") %>
+                </div>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
-      </a>
-    </div>
-  <% end %>
+      <% end %>
+    <% end %>
   </div>
 </div>
 

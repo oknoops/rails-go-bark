@@ -3,8 +3,8 @@ class Contract < ApplicationRecord
   belongs_to :user
 
 
-  validates :start_date,  presence: true
-  validates :end_date,  presence: true
+  validates_presence_of :start_date,  :message => "What is the start date of rental"
+  validates_presence_of :end_date,  :message => "What is the end date of rental"
   validate :dates
   validate :booking_period_not_overlapped
 
@@ -37,7 +37,7 @@ class Contract < ApplicationRecord
         start_date, start_date,
         start_date, end_date
       ).empty?
-        errors.add(:start_date, 'Invalid period.')
+        errors.add(:start_date, 'Sorry this pet is already booked at this time period')
       end
     end
   # def cannot_overlap_another_contract

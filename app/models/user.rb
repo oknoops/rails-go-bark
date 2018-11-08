@@ -7,7 +7,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :name, presence: true
-  validates :last_name, presence: true
+  validates_presence_of :name, :message => "We need your first name"
+  validates_presence_of :last_name, :message => "We need your first last name"
   mount_uploader :avatar, AvatarUploader
 end

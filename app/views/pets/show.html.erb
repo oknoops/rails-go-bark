@@ -27,13 +27,15 @@
         </div>
 
         <div class = 'col-sm-6'>
-          <h3>The owner:</h3>
-           <% if @pet.user.avatar? %>
-            <img src="<%=  cl_image_path (@pet.user.avatar) %>" alt="" class="avatar">
-            <%= @pet.user.name %>
-          <% else %>
-            <%= @pet.user.name %>
-          <% end %>
+          <div class="pet-owner">
+            <h3>The owner:</h3>
+            <% if @pet.user.avatar? %>
+              <img src="<%=  cl_image_path (@pet.user.avatar) %>" alt="" class="avatar">
+              <%=link_to @pet.user.name, user_path(@pet.user) %>
+            <% else %>
+              <%=link_to @pet.user.name, user_path(@pet.user) %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
@@ -131,7 +133,11 @@
     <div class="contract-form" style = 'margin-top: 20px;'>
       <% if user_signed_in? %>
         <%= simple_form_for [@pet, @contract] do |f| %>
-          <%= f.error_notification %>
+          <% if @contract.errors.any? %>
+            <% @simulation.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          <% end %>
           <%= f.input :start_date, :input_html => { :value => DateTime.now.strftime("%d/%m/%Y")}, :as => :string %>
           <%= f.input :end_date, :input_html => { :value => DateTime.now.strftime("%d/%m/%Y ")}, :as => :string %>
             <%= f.submit %>
