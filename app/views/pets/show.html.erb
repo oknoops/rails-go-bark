@@ -141,13 +141,13 @@
       <% if user_signed_in? %>
         <%= simple_form_for [@pet, @contract] do |f| %>
           <% if @contract.errors.any? %>
-            <% @simulation.errors.full_messages.each do |message| %>
+            <% @contract.errors.full_messages.each do |message| %>
               <li><%= message %></li>
             <% end %>
           <% end %>
           <%= f.input :start_date, :input_html => { :value => DateTime.now.strftime("%d/%m/%Y")}, :as => :string %>
           <%= f.input :end_date, :input_html => { :value => DateTime.now.strftime("%d/%m/%Y ")}, :as => :string %>
-            <%= f.submit %>
+            <%= f.submit data: { confirm: "Booking from #{@contract.end_date}"} %>
         <% end %>
       <% end %>
     </div>

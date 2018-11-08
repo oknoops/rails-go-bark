@@ -83,7 +83,7 @@
               <div class = 'petcard-description'>
                 <div class = 'petcard-name'>
                   You rented <%= contract.pet.name %>
-                  from <%= contract.start_date.strftime("%d/%m/%Y") %> to <%= contract.end_date.strftime("%d/%m/%Y") %>
+                  from <%= contract.start_date.strftime("%d/%m/%Y") %> to <%= contract.end_date.strftime("%d/%m/%Y") %> for <%= contract.price(contract.pet) %> €
                 </div>
               </div>
             </div>
