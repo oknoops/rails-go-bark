@@ -121,13 +121,13 @@
         <% end  %>
         <% if policy(@pet).edit? %>
           <% @pet.contracts.each do |contract| %>
-            <p> is rented from <%= contract.start_date.strftime("%d/%m/%Y") %> to <%= contract.end_date.strftime("%d/%m/%Y") %>  <%= link_to ("<i class='fas fa-edit'></i>").html_safe, edit_pet_contract_path(@pet, contract) %> <%= link_to ("<i class='fas fa-trash-alt'></i>").html_safe, pet_contract_path(@pet, contract), method: :delete, data: { confirm: "Are you sure?" } %> </p>
+            <p> is rented from <%= contract.start_date.strftime("%d/%m/%Y") %> to <%= contract.end_date.strftime("%d/%m/%Y") %> for <%= contract.price(contract.pet) %> € <%= link_to ("<i class='fas fa-edit'></i>").html_safe, edit_pet_contract_path(@pet, contract) %> <%= link_to ("<i class='fas fa-trash-alt'></i>").html_safe, pet_contract_path(@pet, contract), method: :delete, data: { confirm: "Are you sure?" } %> </p>
           <% end %>
         <% end  %>
         <% if contracts.include? @pet %>
           <% cont = current_user.contracts.select {|cont| cont.pet == @pet} %>
           <% cont.each do |c|  %>
-            You rented this pet from <%= c.start_date.strftime("%d/%m/%Y") %> to the <%= c.end_date.strftime("%d/%m/%Y") %> <%= link_to ("<i class='fas fa-edit'></i>").html_safe, edit_pet_contract_path(@pet, c) %> <%= link_to ("<i class='fas fa-trash-alt'></i>").html_safe, pet_contract_path(@pet, c), method: :delete, data: { confirm: "Are you sure?" } %>
+            You rented this pet from <%= c.start_date.strftime("%d/%m/%Y") %> to the <%= c.end_date.strftime("%d/%m/%Y") %> for <%= c.price(c.pet) %> € <%= link_to ("<i class='fas fa-edit'></i>").html_safe, edit_pet_contract_path(@pet, c) %> <%= link_to ("<i class='fas fa-trash-alt'></i>").html_safe, pet_contract_path(@pet, c), method: :delete, data: { confirm: "Are you sure?" } %>
             <br>
           <% end  %>
         <% end %>
