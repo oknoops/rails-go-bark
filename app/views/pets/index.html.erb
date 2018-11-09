@@ -30,7 +30,10 @@
           <div class = 'petcard-image'></div>
           <div class = 'petcard-description'>
             <div class = 'petcard-name'>
-              <%= pet.name %>
+              <p> <%= pet.name %> </p>
+              <% pet.average.times do  %>
+                <i class='fas fa-star fa-xs'></i>
+              <% end %>
             </div>
           </div>
         </div>
