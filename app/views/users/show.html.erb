@@ -50,20 +50,24 @@
     <% @user.pets.each do |pet| %>
       <div class = 'col-sm-4'>
         <a href="/pets/<%= pet.id %>" style = "text-decoration: none">
-          <div class = 'petcard' style = "background-image: url(<%= cl_image_path pet.photo %>);">
+          <div class = 'petcard' style = "background-image: url(<%= cl_image_path pet.photo, :gravity=>'faces' %>);">
           <div class = 'petcard-image'></div>
           <div class = 'petcard-description'>
             <div class = 'petcard-name'>
               <%= pet.name %>
+              <br>
               <% pet.contracts.sort.take(1).each do |contract| %>
-              is rented from <%= contract.start_date.strftime("%d/%m/%Y") %> to <%= contract.end_date.strftime("%d/%m/%Y") %>
+                 <%= contract.start_date.strftime("%d/%m/%Y")%> to <%= contract.end_date.strftime("%d/%m/%Y") %> <br> <%= contract.price(contract.pet) %> €
+                <br>
+                Renter : <%= contract.user.name %>
+                  <img src="<%=  cl_image_path (contract.user.avatar) if contract.user.avatar? %>" alt="" class="avatar" >
               <% end %>
             </div>
           </div>
         </div>
       </a>
     </div>
-  <% end %>
+    <% end %>
   </div>
 </div>
 
@@ -78,12 +82,15 @@
       <% @user.contracts.each do |contract| %>
         <div class = 'col-sm-4'>
           <a href="/pets/<%= contract.pet.id %>" style = "text-decoration: none">
-            <div class = 'petcard' style = "background-image: url(<%= cl_image_path contract.pet.photo %>);">
+            <div class = 'petcard' style = "background-image: url(<%= cl_image_path contract.pet.photo, :gravity=>'faces'%>);">
               <div class = 'petcard-image'></div>
               <div class = 'petcard-description'>
                 <div class = 'petcard-name'>
-                  You rented <%= contract.pet.name %>
-                  from <%= contract.start_date.strftime("%d/%m/%Y") %> to <%= contract.end_date.strftime("%d/%m/%Y") %> for <%= contract.price(contract.pet) %>€
+                  <%= contract.pet.name %>
+                  <br>
+                  <%= contract.start_date.strftime("%d/%m/%Y") %> to <%= contract.end_date.strftime("%d/%m/%Y") %>
+                  <br>
+                  <%= contract.price(contract.pet) %>€
                 </div>
               </div>
             </div>

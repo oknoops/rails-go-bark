@@ -78,41 +78,12 @@
   <div class = 'pet-informartion-title'>Reviews</div>
   <div class = 'pet-informartion-general' id="reviews">
     <% @pet.reviews.each do |review| %>
-      <% review.rating.times do %>
-        <i class='fas fa-star'></i>
-      <% end %>
-      <%= review.description %> (<%= review.user.name %>)
-      <% if user_signed_in? %>
-        <% if policy(review).edit? || current_user.admin %>
-          <%= link_to ("<i class='fas fa-edit'></i>").html_safe, edit_pet_review_path(@pet, review) %>
-        <% end  %>
-        <% if policy(review).destroy? || current_user.admin %>
-          <%= link_to ("<i class='fas fa-trash-alt'></i>").html_safe, pet_review_path(@pet, review), method: :delete, data: { confirm: "Are you sure?" } %>
-        <% end %>
-      <% end %>
-      <br>
+      <%= render "reviews/show", pet: @pet, review: review %>
     <% end  %>
   </div>
 </div>
 
-<div class="row" style = "text-align: center;">
-  <div class="col-md-8 col-sm-offset-2">
-    <div class="review-form" style = 'margin: 30px 0;'>
-      <% if user_signed_in? %>
-        <% if policy(@pet).edit? %>
-          You can't review your own pets.
-        <% else %>
-          <%= simple_form_for([@pet, @review], remote: true) do |f| %>
-            <%= f.error_notification %>
-            <%= f.input :rating %>
-            <%= f.input :description %>
-            <%= f.submit %>
-          <% end %>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-</div>
+<%= render "reviews/form", pet: @pet, review: @review %>
 
 <div class = 'picture-dog-animal <%= @pet.specie %>2'></div>
 
