@@ -17,14 +17,6 @@ class PetsController < ApplicationController
   def show
     @review = Review.new
     @contract = Contract.new
-    total = @pet.reviews.map do
-      |review| review.rating
-    end
-    if total.size == 0
-      @average = 0
-    else
-      @average = total.sum / total.size
-    end
   end
 
   def new

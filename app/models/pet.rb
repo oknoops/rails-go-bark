@@ -9,4 +9,15 @@ class Pet < ApplicationRecord
   validates_presence_of :specie, :message => "Your pet needs a specie"
   mount_uploader :photo, PhotoUploader
 
+
+  def average
+    total = self.reviews.map do
+      |review| review.rating
+    end
+    if total.size == 0
+      return 0
+    else
+      return total.sum / total.size
+    end
+  end
 end
