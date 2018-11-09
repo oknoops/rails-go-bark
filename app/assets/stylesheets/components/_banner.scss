@@ -1,12 +1,10 @@
-.banner {
+.banner-wrapper {
   color: white;
   text-align: center;
-  height: 100vh;
+  height: calc(100vh - 70px);
   /* if you have a 70px navbar => height: calc(100vh - 70px); */
   background-size: cover !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
   margin-top: 70px;
 }
 .banner h1 {
@@ -20,4 +18,33 @@
   color: rgb(255, 255, 255);
   opacity: 0.6;
   margin-bottom: 30px;
+}
+
+.banner-content {
+  position: absolute;
+  top: 40%;
+  right: 44%;
+  text-align: right;
+  z-index: 2;
+}
+
+#background-carousel{
+  width:100%;
+  height:100%;
+  z-index:-1;
+}
+
+.carousel,
+.carousel-inner {
+  width:100%;
+  height:100%;
+  z-index:0;
+  overflow:hidden;
+}
+.item {
+  width:100%;
+  height:100%;
+  background-position:center center;
+  background-size:cover;
+  z-index:0;
 }

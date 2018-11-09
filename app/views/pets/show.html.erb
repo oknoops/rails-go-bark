@@ -76,7 +76,7 @@
 
 <div class = 'pet-information'>
   <div class = 'pet-informartion-title'>Reviews</div>
-  <div class = pet-informartion-general>
+  <div class = 'pet-informartion-general' id="reviews">
     <% @pet.reviews.each do |review| %>
       <% review.rating.times do %>
         <i class='fas fa-star'></i>
@@ -102,7 +102,7 @@
         <% if policy(@pet).edit? %>
           You can't review your own pets.
         <% else %>
-          <%= simple_form_for [@pet, @review] do |f| %>
+          <%= simple_form_for([@pet, @review], remote: true) do |f| %>
             <%= f.error_notification %>
             <%= f.input :rating %>
             <%= f.input :description %>
