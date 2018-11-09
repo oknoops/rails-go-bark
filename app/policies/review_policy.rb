@@ -4,11 +4,7 @@ class ReviewPolicy < ApplicationPolicy
   end
 
   def update?
-    if record.user == user || user.admin
-      true
-    else
-      false
-    end
+    record.user == user
   end
 
   def destroy?
