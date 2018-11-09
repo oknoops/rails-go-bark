@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
     @review.user = current_user
     # @review.save
     # redirect_to pet_path(@review.pet)
-    if @review.save
+    if @review.save!
       respond_to do |format|
         format.html { redirect_to pet_path(@review.pet) }
         format.js  # <-- will render `app/views/reviews/create.js.erb`

@@ -29,12 +29,12 @@
     </div>
     <div class = 'col-sm-6'>
       <% if policy(@user).destroy? || current_user.admin %>
-        <%= link_to 'Delete Profile', user_registration_path(current_user), class: "btn btn-primary", method: :delete, data: { confirm: "Are you sure?, all your pets and reviews will be deleted. You will lose all the cuteness" }  %>
+        <%= link_to 'Delete Profile', user_registration_path(@user), class: "btn btn-primary", method: :delete, data: { confirm: "Are you sure?, all your pets and reviews will be deleted. You will lose all the cuteness" }  %>
       <% end %>
     </div>
     <div class = 'col-sm-6'>
       <% if policy(@user).update? || current_user.admin %>
-      <%= link_to 'Edit Profile', edit_user_path(current_user), class: 'btn btn-primary' %>
+      <%= link_to 'Edit Profile', edit_user_path(@user), class: 'btn btn-primary' %>
       <% end %>
     </div>
   </div>

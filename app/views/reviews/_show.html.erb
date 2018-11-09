@@ -4,10 +4,10 @@
 <%= review.description %> (<%= review.user.name %>)
 <% if user_signed_in? %>
   <% if policy(review).edit? || current_user.admin %>
-    <%= link_to ("<i class='fas fa-edit'></i>").html_safe, edit_pet_review_path(pet, review) %>
+    <%= link_to ("<i class='fas fa-edit'></i>").html_safe, edit_pet_review_path(review.pet, review) %>
   <% end  %>
   <% if policy(review).destroy? || current_user.admin %>
-    <%= link_to ("<i class='fas fa-trash-alt'></i>").html_safe, pet_review_path(pet, review), method: :delete, data: { confirm: "Are you sure?" } %>
+    <%= link_to ("<i class='fas fa-trash-alt'></i>").html_safe, pet_review_path(review.pet, review), method: :delete, data: { confirm: "Are you sure?" } %>
   <% end %>
 <% end %>
 <br>
