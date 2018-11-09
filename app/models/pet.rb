@@ -20,4 +20,8 @@ class Pet < ApplicationRecord
       return total.sum / total.size
     end
   end
+
+  def self.sorted_by_average
+    Pet.all.sort_by(&:average).reverse!
+  end
 end

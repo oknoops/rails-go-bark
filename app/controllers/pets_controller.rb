@@ -4,13 +4,13 @@ class PetsController < ApplicationController
 
   def index
     if params[:query].present? && params[:specie].present?
-      @pets = policy_scope(Pet).joins(:user).where("pets.specie like ? AND (pets.name @@ ? OR pets.description @@ ? OR users.name @@ ? OR pets.breed @@ ? OR users.last_name @@ ?)", params[:specie], params[:query], params[:query], params[:query], params[:query], params[:query])
+      @pets = policy_scope(Pet).joins(:user).where("pets.specie like ? AND (pets.name @@ ? OR pets.description @@ ? OR users.name @@ ? OR pets.breed @@ ? OR users.last_name @@ ?)", params[:specie], params[:query], params[:query], params[:query], params[:query], params[:query]).sorted_by_average
     elsif params[:query].present?
-      @pets = policy_scope(Pet).joins(:user).where("pets.name @@ ? OR pets.description @@ ? OR users.name @@ ? OR pets.breed @@ ? OR users.last_name @@ ?", params[:query], params[:query], params[:query], params[:query], params[:query])
+      @pets = policy_scope(Pet).joins(:user).where("pets.name @@ ? OR pets.description @@ ? OR users.name @@ ? OR pets.breed @@ ? OR users.last_name @@ ?", params[:query], params[:query], params[:query], params[:query], params[:query]).sorted_by_average
     elsif params[:specie].present?
-      @pets = policy_scope(Pet).joins(:user).where("pets.specie ilike ?", params[:specie])
+      @pets = policy_scope(Pet).joins(:user).where("pets.specie ilike ?", params[:specie]).sorted_by_average
     else
-      @pets = policy_scope(Pet).order(created_at: :desc)
+      @pets = policy_scope(Pet).sorted_by_average
     end
   end
 
