@@ -6,10 +6,11 @@
         <a href="/users/<%= user.id %>" style = "text-decoration: none">
             <div class = 'petcard usercard' style = "background-image: url(<%= cl_image_path user.avatar if user.avatar? %>);">
             <div class = 'petcard-image'></div>
-            <div class = 'petcard-description'>
-              <div class = 'petcard-name'>
-                <%= user.name %>
-              </div>
+              <div class = 'usercard-name'>
+                <p> <%= user.name %> </p>
+                <%user.average.times do %>
+                  <i class='fas fa-star'></i>
+                <% end %>
             </div>
           </div>
         </a>
