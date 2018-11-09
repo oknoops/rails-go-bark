@@ -42,7 +42,7 @@
 
 <div class = 'picture-dog'></div>
 
-<div class = 'pets'>
+<div class = 'pets' id='my-pets'>
   <div class="row">
     <div class="col-sm-12">
       <h2 style = "text-align: center;"> <%= @user.name %>'s Pets </h2>
@@ -73,7 +73,7 @@
 
 <div class = 'picture-dog-bottom'></div>
 
-<div class = 'pets'>
+<div class = 'pets' id='my-contracts'>
   <div class="row">
     <% if @user == current_user || current_user.admin %>
       <div class="col-sm-12">
