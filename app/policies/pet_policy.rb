@@ -16,7 +16,7 @@ class PetPolicy < ApplicationPolicy
   end
 
   def update?
-    if record.user == user || user.admin
+    if record.user == user
       true
     else
       false
