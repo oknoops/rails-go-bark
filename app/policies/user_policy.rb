@@ -17,11 +17,19 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    record == user
+    if record == user || user.admin
+      true
+    else
+      false
+    end
   end
 
   def destroy?
-    record == user
+    if record == user || user.admin
+      true
+    else
+      false
+    end
   end
 
 

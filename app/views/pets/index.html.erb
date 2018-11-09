@@ -38,8 +38,8 @@
     </div>
     <% end %>
   </div>
+      <% if user_signed_in? && current_user.admin %>
+      <%= link_to 'List of All Users (admin)', users_path, class: "btn btn-primary" %>
+    <% end %>
 </div>
 
-<% if user_signed_in? && current_user.admin %>
-  <%= link_to 'List of Users', users_path %>
-<% end %>

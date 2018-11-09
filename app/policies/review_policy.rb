@@ -4,11 +4,19 @@ class ReviewPolicy < ApplicationPolicy
   end
 
   def update?
-    record.user == user
+    if record.user == user || user.admin
+      true
+    else
+      false
+    end
   end
 
   def destroy?
-    record.user == user
+    if record.user == user || user.admin
+      true
+    else
+      false
+    end
   end
 
   class Scope < Scope
