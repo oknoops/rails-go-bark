@@ -5,8 +5,19 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.pet = Pet.find(params[:pet_id])
     @review.user = current_user
-    @review.save
-    redirect_to pet_path(@review.pet)
+    # @review.save
+    # redirect_to pet_path(@review.pet)
+    if @review.save
+      respond_to do |format|
+        format.html { redirect_to pet_path(@review.pet) }
+        format.js  # <-- will render `app/views/reviews/create.js.erb`
+      end
+    else
+      respond_to do |format|
+        format.html { render 'pets/show' }
+        format.js  # <-- idem
+      end
+    end
     authorize @review
   end
 
