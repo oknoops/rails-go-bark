@@ -6,7 +6,7 @@
         <i class='fas fa-star fa-xs'></i>
       <% end %><br>
       <% if user_signed_in? %>
-        <% if policy(@pet).edit? || current_user.admin %>
+        <% if policy(@pet).edit? %>
           <%= link_to ("<i class='fas fa-edit'></i>").html_safe, edit_pet_path %>
         <% end  %>
         <% if policy(@pet).destroy? || current_user.admin %>
