@@ -2,7 +2,7 @@
   <%= f.error_notification %>
   <p>
     <%= f.input :name, label: 'My pets name is', placeholder: 'Mickey' %>.
-    <%= f.input :specie, label: 'He is a', collection: [ "Dog", "Cat", "Bird","Reptile","Dragon","Unicorn","Rabbit"] %>
+    <%= f.input :specie, label: 'He is a', collection: [ "Dog", "Cat", "Bird","Reptile","Dragon","Unicorn","Rabbit", "Fish"].sort %>
     <%= f.input :breed, placeholder: 'German Shepard', label: 'from the' %> breed.
     <%= f.input :description, label: 'If I had to describe my pet I would say:', placeholder: 'Very nice and sweet', :input_html => { class: 'input-description'} %>
     <%= f.input :price, label: 'It will cost you', placeholder: '20' %> every day to rent him.
