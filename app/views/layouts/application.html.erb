@@ -33,7 +33,7 @@
           <% if user_signed_in? %>
             <div class="dropdown" >
               <% if current_user.avatar? %>
-                <img src="<%=  cl_image_path (current_user.avatar) %>" alt="" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
+                <img src="<%=  cl_image_path (current_user.avatar), :gravity=>'faces' %>" alt="" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown">
               <% else %>
                 <div class="dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown"> <%= current_user.name %> </div>
               <% end %>

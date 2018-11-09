@@ -1,0 +1,18 @@
+<div class="row" style = "text-align: center;">
+  <div class="col-md-8 col-sm-offset-2">
+    <div class="review-form" style = 'margin: 30px 0;'>
+      <% if user_signed_in? %>
+        <% if policy(pet).edit? %>
+          You can't review your own pets.
+        <% else %>
+          <%= simple_form_for([pet, review], remote: true) do |f| %>
+            <%= f.error_notification %>
+            <%= f.input :rating %>
+            <%= f.input :description %>
+            <%= f.submit %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
