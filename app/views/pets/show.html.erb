@@ -78,7 +78,7 @@
   <div class = 'pet-informartion-title'>Reviews</div>
   <div class = 'pet-informartion-general' id="reviews">
     <% @pet.reviews.each do |review| %>
-      <%= render "reviews/show", pet: @pet, review: review %>
+      <%= render "reviews/show", pet: review.pet, review: review %>
     <% end  %>
   </div>
 </div>
